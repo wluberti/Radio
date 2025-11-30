@@ -1,0 +1,39 @@
+Source: pyradio
+Section: sound
+Priority: optional
+Maintainer: PyRadio Developers <pyradio@example.com>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python3-all,
+               python3-setuptools,
+               python3-gi
+Standards-Version: 4.6.0
+Homepage: https://github.com/pyradio/pyradio
+Vcs-Git: https://github.com/pyradio/pyradio.git
+Vcs-Browser: https://github.com/pyradio/pyradio
+
+Package: pyradio
+Architecture: all
+Depends: ${python3:Depends},
+         ${misc:Depends},
+         python3-gi,
+         gir1.2-gtk-4.0,
+         gir1.2-gstreamer-1.0,
+         gstreamer1.0-plugins-base,
+         gstreamer1.0-plugins-good,
+         gstreamer1.0-plugins-bad,
+         gstreamer1.0-tools
+Recommends: gstreamer1.0-libav
+Description: Internet radio player for Linux desktop
+ PyRadio is a modern GTK4-based application for listening to internet
+ radio stations. It provides:
+  * Access to thousands of radio stations via RadioBrowser API
+  * Support for Dutch and international stations
+  * Favorites management
+  * Display of current song/track information
+  * Bitrate and codec information
+  * Clean, intuitive GTK4 interface
+  * Offline station caching
+ .
+ The application uses GStreamer for reliable audio playback and supports
+ common streaming formats including MP3, AAC, and OGG.

@@ -1,0 +1,13 @@
+pyradio (1.0.0-1) unstable; urgency=medium
+
+  * Initial release
+  * GTK4-based internet radio player
+  * RadioBrowser API integration for station discovery
+  * Support for Dutch and international radio stations
+  * Favorites management with persistence
+  * ICY metadata display (now playing, bitrate)
+  * GStreamer-based audio playback
+  * Offline station caching
+  * Search and filter functionality
+
+ -- PyRadio Developers <pyradio@example.com>  Sun, 30 Nov 2025 14:00:00 +0100

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools-scm>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyradio"
+version = "1.0.0"
+description = "Internet radio player for Linux desktop"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "GPL-3.0-or-later"}
+authors = [
+    {name = "PyRadio Developers"}
+]
+keywords = ["radio", "streaming", "gtk", "linux", "audio"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: X11 Applications :: GTK",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Sound/Audio :: Players",
+]
+
+dependencies = [
+    "PyGObject>=3.40.0",
+]
+
+[project.scripts]
+pyradio = "pyradio.main:main"
+
+[project.urls]
+Homepage = "https://github.com/pyradio/pyradio"
+Repository = "https://github.com/pyradio/pyradio"
+
+[tool.setuptools.packages.find]
+include = ["pyradio*"]
