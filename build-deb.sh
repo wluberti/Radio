@@ -44,15 +44,22 @@ echo ""
 # Build the package
 dpkg-buildpackage -us -uc -b
 
+# Move artifacts to deb-files directory
+echo "Moving artifacts to deb-files/..."
+mkdir -p deb-files
+mv ../pyradio_*.deb deb-files/
+mv ../pyradio_*.changes deb-files/
+mv ../pyradio_*.buildinfo deb-files/
+
 echo ""
 echo "=========================================="
 echo "Build completed successfully!"
 echo "=========================================="
 echo ""
-echo "The .deb package has been created in the parent directory:"
-ls -lh ../*.deb 2>/dev/null || echo "Package file: ../pyradio_*.deb"
+echo "The .deb package has been created in:"
+ls -lh deb-files/*.deb
 echo ""
 echo "To install the package, run:"
-echo "  sudo dpkg -i ../pyradio_*.deb"
+echo "  sudo dpkg -i deb-files/pyradio_*.deb"
 echo "  sudo apt-get install -f"
 echo ""

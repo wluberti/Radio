@@ -25,10 +25,10 @@ Changes:
    * Search and filter functionality
 Checksums-Sha1:
  2b6bb028302ce502ab4f1bb2c0206691c88e1a3e 571432 pyradio_1.0.0-1_all.deb
- 3514317737fa72bdedcc814501a4f8a64ba5e3f5 7899 pyradio_1.0.0-1_amd64.buildinfo
+ 3de8782ceabc114a9a9bfa7a0423bfe613469330 7899 pyradio_1.0.0-1_amd64.buildinfo
 Checksums-Sha256:
  d916c6bb4b72209075570b8b29b7bc40f87d50fa21469dddd923b0a0914f3964 571432 pyradio_1.0.0-1_all.deb
- 3b261cf54dbbf5856db4e4ab6348fd7d1f4b6f53a683d1b1e6726827c71da513 7899 pyradio_1.0.0-1_amd64.buildinfo
+ 95f735be60bc95558039c3975dce683ed40dd313d88a5d491f56d0d9821e2bca 7899 pyradio_1.0.0-1_amd64.buildinfo
 Files:
  04de75be33126aa8953d7b2fb539c51a 571432 sound optional pyradio_1.0.0-1_all.deb
- e35cf0fffc96d54ce635d1638ead7dd1 7899 sound optional pyradio_1.0.0-1_amd64.buildinfo
+ 3ee13eff607fcec5728ff5b51cb707d6 7899 sound optional pyradio_1.0.0-1_amd64.buildinfo

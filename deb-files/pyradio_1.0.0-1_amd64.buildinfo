@@ -11,7 +11,7 @@ Checksums-Sha256:
  d916c6bb4b72209075570b8b29b7bc40f87d50fa21469dddd923b0a0914f3964 571432 pyradio_1.0.0-1_all.deb
 Build-Origin: Ubuntu
 Build-Architecture: amd64
-Build-Date: Sun, 30 Nov 2025 15:45:16 +0100
+Build-Date: Sun, 30 Nov 2025 15:52:13 +0100
 Build-Tainted-By:
  merged-usr-via-aliased-dirs
  usr-local-has-libraries
