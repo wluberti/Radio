@@ -139,8 +139,3 @@ debian/pyradio/
 debian/tmp/
 debian/*.log
 debian/*.debhelper
-
-# Build artifacts
-*.deb
-*.buildinfo
-*.changes

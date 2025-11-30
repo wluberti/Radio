@@ -1,0 +1,34 @@
+Format: 1.8
+Date: Sun, 30 Nov 2025 14:00:00 +0100
+Source: pyradio
+Binary: pyradio
+Built-For-Profiles: noudeb
+Architecture: all
+Version: 1.0.0-1
+Distribution: unstable
+Urgency: medium
+Maintainer: PyRadio Developers <pyradio@example.com>
+Changed-By: PyRadio Developers <pyradio@example.com>
+Description:
+ pyradio    - Internet radio player for Linux desktop
+Changes:
+ pyradio (1.0.0-1) unstable; urgency=medium
+ .
+   * Initial release
+   * GTK4-based internet radio player
+   * RadioBrowser API integration for station discovery
+   * Support for Dutch and international radio stations
+   * Favorites management with persistence
+   * ICY metadata display (now playing, bitrate)
+   * GStreamer-based audio playback
+   * Offline station caching
+   * Search and filter functionality
+Checksums-Sha1:
+ 53276782385ccd8789ff25cac339128b02d9b8ab 570918 pyradio_1.0.0-1_all.deb
+ 76cda7d2c63efd18b76fc231fcfdd6b9ba879589 7899 pyradio_1.0.0-1_amd64.buildinfo
+Checksums-Sha256:
+ 03b607008e52577010e789b813612c595a6b62efd80173f723211905bf2c881f 570918 pyradio_1.0.0-1_all.deb
+ fe614530a495668b7c9e14938d49c7672915d9a12bb877747252ce4df1f4cbc6 7899 pyradio_1.0.0-1_amd64.buildinfo
+Files:
+ 4c67154c53a5580c41d38086fb175a19 570918 sound optional pyradio_1.0.0-1_all.deb
+ 19a944350173dbb2d6d4898b6a8ef6cd 7899 sound optional pyradio_1.0.0-1_amd64.buildinfo
