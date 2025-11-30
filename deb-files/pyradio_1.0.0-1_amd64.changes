@@ -24,11 +24,11 @@ Changes:
    * Offline station caching
    * Search and filter functionality
 Checksums-Sha1:
- 53276782385ccd8789ff25cac339128b02d9b8ab 570918 pyradio_1.0.0-1_all.deb
- 76cda7d2c63efd18b76fc231fcfdd6b9ba879589 7899 pyradio_1.0.0-1_amd64.buildinfo
+ 2b6bb028302ce502ab4f1bb2c0206691c88e1a3e 571432 pyradio_1.0.0-1_all.deb
+ 3514317737fa72bdedcc814501a4f8a64ba5e3f5 7899 pyradio_1.0.0-1_amd64.buildinfo
 Checksums-Sha256:
- 03b607008e52577010e789b813612c595a6b62efd80173f723211905bf2c881f 570918 pyradio_1.0.0-1_all.deb
- fe614530a495668b7c9e14938d49c7672915d9a12bb877747252ce4df1f4cbc6 7899 pyradio_1.0.0-1_amd64.buildinfo
+ d916c6bb4b72209075570b8b29b7bc40f87d50fa21469dddd923b0a0914f3964 571432 pyradio_1.0.0-1_all.deb
+ 3b261cf54dbbf5856db4e4ab6348fd7d1f4b6f53a683d1b1e6726827c71da513 7899 pyradio_1.0.0-1_amd64.buildinfo
 Files:
- 4c67154c53a5580c41d38086fb175a19 570918 sound optional pyradio_1.0.0-1_all.deb
- 19a944350173dbb2d6d4898b6a8ef6cd 7899 sound optional pyradio_1.0.0-1_amd64.buildinfo
+ 04de75be33126aa8953d7b2fb539c51a 571432 sound optional pyradio_1.0.0-1_all.deb
+ e35cf0fffc96d54ce635d1638ead7dd1 7899 sound optional pyradio_1.0.0-1_amd64.buildinfo

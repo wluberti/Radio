@@ -4,7 +4,7 @@ Main application window for PyRadio.
 
 import gi
 gi.require_version('Gtk', '4.0')
-from gi.repository import Gtk, GLib
+from gi.repository import Gtk, GLib, Gio
 from typing import Dict, Optional
 
 from .now_playing import NowPlayingPanel
@@ -66,7 +66,30 @@ class MainWindow(Gtk.ApplicationWindow):
         self.search_entry.connect('search-changed', self._on_search_changed)
         header.set_title_widget(self.search_entry)
 
+        # Add Refresh button
+        refresh_btn = Gtk.Button.new_from_icon_name("view-refresh-symbolic")
+        refresh_btn.set_tooltip_text("Refresh Stations")
+        refresh_btn.connect('clicked', self._on_refresh_clicked)
+        header.pack_start(refresh_btn)
+
+        # Add Sort menu
+        sort_btn = Gtk.MenuButton()
+        sort_btn.set_icon_name("view-sort-ascending-symbolic")
+        sort_btn.set_tooltip_text("Sort Stations")
+
+        # Create sort menu model
+        menu = Gio.Menu()
+        menu.append("Country (Default)", "app.sort_country")
+        menu.append("Name (A-Z)", "app.sort_name")
+        menu.append("Bitrate (High-Low)", "app.sort_bitrate")
+        menu.append("Votes (Popularity)", "app.sort_votes")
+        sort_btn.set_menu_model(menu)
+        header.pack_end(sort_btn)
+
         self.set_titlebar(header)
+
+        # Setup actions for sort menu
+        self._setup_actions()
 
         # View switcher (All Stations / Favorites)
         switcher_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=0)
@@ -126,10 +149,25 @@ class MainWindow(Gtk.ApplicationWindow):
 
         self.set_child(main_box)
 
-    def _load_stations(self):
+    def _setup_actions(self):
+        """Setup application actions."""
+        # Sort actions
+        actions = [
+            ('sort_country', 'country'),
+            ('sort_name', 'name'),
+            ('sort_bitrate', 'bitrate'),
+            ('sort_votes', 'votes')
+        ]
+
+        for action_name, sort_field in actions:
+            action = Gio.SimpleAction.new(action_name, None)
+            action.connect('activate', self._on_sort_action, sort_field)
+            self.get_application().add_action(action)
+
+    def _load_stations(self, force_refresh: bool = False):
         """Load stations from cache or API."""
-        # Try to load from cache first
-        if self.config.is_cache_valid():
+        # Try to load from cache first (unless forced)
+        if not force_refresh and self.config.is_cache_valid():
             self.all_stations = self.config.load_cache()
             if self.all_stations:
                 self._update_status(f"Loaded {len(self.all_stations)} stations from cache")
@@ -139,11 +177,17 @@ class MainWindow(Gtk.ApplicationWindow):
         # Fetch from API
         self._update_status("Fetching stations from RadioBrowser...")
 
+        # Run in background to avoid freezing UI
+        GLib.timeout_add(100, self._fetch_stations_bg)
+
+    def _fetch_stations_bg(self):
+        """Background fetcher wrapper."""
         try:
             # Fetch mixed stations (Dutch + international)
-            self.all_stations = self.fetcher.fetch_mixed_stations()
+            stations = self.fetcher.fetch_mixed_stations()
 
-            if self.all_stations:
+            if stations:
+                self.all_stations = stations
                 # Save to cache
                 self.config.save_cache(self.all_stations)
                 self._update_status(f"Loaded {len(self.all_stations)} stations")
@@ -153,6 +197,25 @@ class MainWindow(Gtk.ApplicationWindow):
         except Exception as e:
             self._update_status(f"Error fetching stations: {e}")
             print(f"Station fetch error: {e}")
+        return False
+
+    def _on_refresh_clicked(self, button):
+        """Handle refresh button click."""
+        self.config.clear_cache()
+        self._load_stations(force_refresh=True)
+
+    def _on_sort_action(self, action, param, sort_field):
+        """Handle sort action."""
+        self.station_list.set_sort_order(sort_field)
+
+        # Update status
+        sort_names = {
+            'country': 'Country',
+            'name': 'Name',
+            'bitrate': 'Bitrate',
+            'votes': 'Popularity'
+        }
+        self._update_status(f"Sorted by {sort_names.get(sort_field, sort_field)}")
 
     def _update_station_list(self):
         """Update the station list based on current view."""

@@ -9,6 +9,7 @@ A modern, user-friendly internet radio player for Debian-based Linux systems. Bu
 - 🌐 **Extensive Station Library**: Access to 30,000+ radio stations via RadioBrowser API
 - 🇳🇱 **Dutch Radio Support**: Includes NPO Radio 1/2/3FM, Qmusic, Radio 538, Sublime, and hundreds more
 - 📋 **Country-Grouped View**: Stations organized by country (Netherlands first)
+- 🔄 **Refresh & Sort**: Manually refresh station list and sort by Name, Bitrate, or Popularity
 - ⭐ **Favorites**: Save and organize your favorite stations
 - 🎵 **Metadata Display**: Shows current song/track title and bitrate (when available)
 - 🔍 **Search & Filter**: Easily find stations by name, country, or tags

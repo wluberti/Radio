@@ -58,12 +58,14 @@ pyradio
 ## Using the App
 
 1. **Browse by Country**: Stations are grouped by country - Netherlands appears first!
-2. **Search**: Type in the search box to filter stations
-3. **Play**: Click a station, then click "▶ Play"
-4. **Favorite**: Click "☆ Favorite" to save stations
-5. **View Favorites**: Click "Favorites" tab at top
-6. **Volume**: Use the slider at bottom
-7. **Stop**: Click "⏹ Stop"
+2. **Refresh**: Click the refresh icon (🔄) to reload stations
+3. **Sort**: Click the sort icon to order by Name, Bitrate, or Popularity
+4. **Search**: Type in the search box to filter stations
+5. **Play**: Click a station, then click "▶ Play"
+6. **Favorite**: Click "☆ Favorite" to save stations
+7. **View Favorites**: Click "Favorites" tab at top
+8. **Volume**: Use the slider at bottom
+9. **Stop**: Click "⏹ Stop"
 
 ## Finding Dutch Stations
 

@@ -21,6 +21,7 @@ class StationListView(Gtk.Box):
         self.stations: List[Dict] = []
         self.filtered_stations: List[Dict] = []
         self.filter_text = ""
+        self.sort_field = "country"  # Default sort
 
         self._build_ui()
 
@@ -76,8 +77,13 @@ class StationListView(Gtk.Box):
         # Rebuild list
         self._rebuild_list()
 
+    def set_sort_order(self, field: str):
+        """Set the sort order (name, country, bitrate, votes)."""
+        self.sort_field = field
+        self._rebuild_list()
+
     def _rebuild_list(self):
-        """Rebuild the list box with current filtered stations, grouped by country."""
+        """Rebuild the list box with current filtered stations."""
         # Clear existing rows
         while True:
             row = self.list_box.get_row_at_index(0)
@@ -98,45 +104,70 @@ class StationListView(Gtk.Box):
                 )
             self.list_box.append(self.status_label)
         else:
-            # Group stations by country
-            from collections import defaultdict
-            countries = defaultdict(list)
-            for station in self.filtered_stations:
-                country = station.get('country', 'Unknown')
-                countries[country].append(station)
+            # Sort stations
+            if self.sort_field == "country":
+                # Group by country (default view)
+                self._build_country_grouped_list()
+            else:
+                # Flat list sorted by field
+                self._build_flat_sorted_list()
 
-            # Sort countries: Netherlands first, then alphabetically
-            sorted_countries = sorted(countries.keys(),
-                                     key=lambda c: (c != 'The Netherlands', c.lower()))
+    def _build_country_grouped_list(self):
+        """Build list grouped by country."""
+        from collections import defaultdict
+        countries = defaultdict(list)
+        for station in self.filtered_stations:
+            country = station.get('country', 'Unknown')
+            countries[country].append(station)
 
-            # Add stations grouped by country
-            for country in sorted_countries:
-                # Add country header
-                header_row = Gtk.ListBoxRow()
-                header_row.set_selectable(False)
-                header_row.set_activatable(False)
-                header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-                header_box.set_margin_start(12)
-                header_box.set_margin_end(12)
-                header_box.set_margin_top(12)
-                header_box.set_margin_bottom(4)
+        # Sort countries: Netherlands first, then alphabetically
+        sorted_countries = sorted(countries.keys(),
+                                 key=lambda c: (c != 'The Netherlands', c.lower()))
 
-                country_label = Gtk.Label()
-                escaped_country = GLib.markup_escape_text(country)
-                count = len(countries[country])
-                country_label.set_markup(
-                    f'<span weight="bold" size="small" foreground="#666666">'
-                    f'{escaped_country.upper()} ({count})</span>'
-                )
-                country_label.set_xalign(0)
-                header_box.append(country_label)
-                header_row.set_child(header_box)
-                self.list_box.append(header_row)
+        # Add stations grouped by country
+        for country in sorted_countries:
+            # Add country header
+            header_row = Gtk.ListBoxRow()
+            header_row.set_selectable(False)
+            header_row.set_activatable(False)
+            header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+            header_box.set_margin_start(12)
+            header_box.set_margin_end(12)
+            header_box.set_margin_top(12)
+            header_box.set_margin_bottom(4)
 
-                # Add stations for this country
-                for station in countries[country]:
-                    row = self._create_station_row(station)
-                    self.list_box.append(row)
+            country_label = Gtk.Label()
+            escaped_country = GLib.markup_escape_text(country)
+            count = len(countries[country])
+            country_label.set_markup(
+                f'<span weight="bold" size="small" foreground="#666666">'
+                f'{escaped_country.upper()} ({count})</span>'
+            )
+            country_label.set_xalign(0)
+            header_box.append(country_label)
+            header_row.set_child(header_box)
+            self.list_box.append(header_row)
+
+            # Add stations for this country (sorted by votes/popularity within country)
+            sorted_stations = sorted(countries[country], key=lambda s: s.get('votes', 0), reverse=True)
+            for station in sorted_stations:
+                row = self._create_station_row(station)
+                self.list_box.append(row)
+
+    def _build_flat_sorted_list(self):
+        """Build flat list sorted by current field."""
+        stations = list(self.filtered_stations)
+
+        if self.sort_field == "name":
+            stations.sort(key=lambda s: s.get('name', '').lower())
+        elif self.sort_field == "bitrate":
+            stations.sort(key=lambda s: s.get('bitrate', 0), reverse=True)
+        elif self.sort_field == "votes":
+            stations.sort(key=lambda s: s.get('votes', 0), reverse=True)
+
+        for station in stations:
+            row = self._create_station_row(station)
+            self.list_box.append(row)
 
 
     def _create_station_row(self, station: Dict) -> Gtk.ListBoxRow:

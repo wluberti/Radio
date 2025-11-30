@@ -118,3 +118,11 @@ class Config:
                 return (time.time() - cache_time) < expiry_seconds
         except (json.JSONDecodeError, IOError):
             return False
+
+    def clear_cache(self):
+        """Clear the station cache."""
+        if self.cache_file.exists():
+            try:
+                self.cache_file.unlink()
+            except OSError as e:
+                print(f"Error clearing cache: {e}")

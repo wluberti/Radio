@@ -4,14 +4,14 @@ Binary: pyradio
 Architecture: all
 Version: 1.0.0-1
 Checksums-Md5:
- 4c67154c53a5580c41d38086fb175a19 570918 pyradio_1.0.0-1_all.deb
+ 04de75be33126aa8953d7b2fb539c51a 571432 pyradio_1.0.0-1_all.deb
 Checksums-Sha1:
- 53276782385ccd8789ff25cac339128b02d9b8ab 570918 pyradio_1.0.0-1_all.deb
+ 2b6bb028302ce502ab4f1bb2c0206691c88e1a3e 571432 pyradio_1.0.0-1_all.deb
 Checksums-Sha256:
- 03b607008e52577010e789b813612c595a6b62efd80173f723211905bf2c881f 570918 pyradio_1.0.0-1_all.deb
+ d916c6bb4b72209075570b8b29b7bc40f87d50fa21469dddd923b0a0914f3964 571432 pyradio_1.0.0-1_all.deb
 Build-Origin: Ubuntu
 Build-Architecture: amd64
-Build-Date: Sun, 30 Nov 2025 15:24:20 +0100
+Build-Date: Sun, 30 Nov 2025 15:45:16 +0100
 Build-Tainted-By:
  merged-usr-via-aliased-dirs
  usr-local-has-libraries
