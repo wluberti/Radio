@@ -140,4 +140,3 @@ debian/tmp/
 debian/*.log
 debian/*.debhelper
 .pybuild/
-deb-files/
